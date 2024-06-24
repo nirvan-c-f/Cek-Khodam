@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Khodam</title>
+    <link rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            background-image: url('genderuwo.png'); 
+            background-size: cover; 
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px 20px;
+            background-color: #686D76;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #373A40;
+        }
+
+        #result {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        #backContainer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #loadingSpinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #loadingSpinner p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            button {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            border-radius: 8px;
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .modal.hide .modal-content {
+            opacity: 0;
+            transform: scale(0.7);
+        }
+
+        .footer-text {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            color: #333;
+            font-weight: bold;
+            padding-bottom: 10px;
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cek khodam yang ada didalam diri mu 😈</h1>
+        <form id="searchForm">
+            <label for="nameInput">Masukkin Nama</label>
+            <input type="text" id="nameInput">
+            <button type="submit">Cari</button>
+        </form>
+        <div id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+            <p>Sabar tot, lagi nyari khodamnya ini</p>
+        </div>
+        <div id="result"></div>
+        <div id="backContainer">
+            <button id="backButton" style="display: none;">Kembali</button>
+        </div>
+    </div>
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <p>Masukkan nama terlebih dahulu.</p>
+            <button id="closeModal">Tutup</button>
+        </div>
+    </div>
+    <script src="khodam.js"></script>
+</body>
+</html>
