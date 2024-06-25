@@ -5,7 +5,7 @@ function cariKhodam(nama) {
     for (let i = 0; i < nama.length; i++) {
         hash += nama.charCodeAt(i);
     }
-    
+
     console.log(`Hash for ${nama}: ${hash}`); // Debugging output
 
     let index = hash % 21;
@@ -20,7 +20,7 @@ function cariKhodam(nama) {
         "OPM",
         "KUCING ISRIWIL",
         "KODOK ACUMALAKA",
-        "SUPRA ICIKIWIR",
+        "SUPRA PALA GETER",
         "PLAYER BLUEARCHIVE",
         "PENYU MADURA",
         "HIU SUNDA",
@@ -28,7 +28,7 @@ function cariKhodam(nama) {
         "KUKANG JAWA",
         "KELELAWAR MANADO",
         "PIRANHA BETAWI",
-        "VARIO PALA GETER",
+        "SALES OPPO",
         "KUDA-KUDA PSHT",
         "SOSOK HITAM LEGAM",
         "KUCING ONDE MANDE",
@@ -44,8 +44,6 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     let name = document.getElementById('nameInput').value.trim();
     if (name === '') {
         const modal = document.getElementById('nameModal');
-        modal.classList.add('show');
-        modal.classList.remove('hide');
         modal.style.display = 'flex';
         return;
     }
@@ -60,12 +58,12 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     let progress = 0;
     let interval = setInterval(function() {
         if (progress < 100) {
-            progress += 2; // Adjust this value for smoother progress
+            progress += 2; 
             loadingBar.style.width = `${progress}%`;
         } else {
             clearInterval(interval);
         }
-    }, 100); // Adjust this value to match the total time of 5000ms
+    }, 100);
 
     setTimeout(function() {
         let result = cariKhodam(name);
@@ -85,9 +83,5 @@ document.getElementById('backButton').addEventListener('click', function() {
 
 document.getElementById('closeModal').addEventListener('click', function() {
     const modal = document.getElementById('nameModal');
-    modal.classList.add('hide');
-    setTimeout(() => {
-        modal.style.display = 'none';
-        modal.classList.remove('show');
-    }, 300);
+    modal.style.display = 'none';
 });
