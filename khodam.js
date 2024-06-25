@@ -5,30 +5,34 @@ function cariKhodam(nama) {
     for (let i = 0; i < nama.length; i++) {
         hash += nama.charCodeAt(i);
     }
+    
+    console.log(`Hash for ${nama}: ${hash}`); // Debugging output
 
-    let index = hash % 20;
+    let index = hash % 21;
+    console.log(`Index for ${nama}: ${index}`); // Debugging output
 
     const khodams = [
-        "Kapal Karam",
-        "Laba-Laba Sunda",
-        "Ambaruwo",
-        "Ambatron",
-        "Skibidi Toilet",
+        "KAPAL KARAM",
+        "LABA-LABA SUNDA",
+        "AMBARUWO",
+        "AMBATRON",
+        "SKIBIDI TOILET",
         "OPM",
-        "Kucing Isriwil",
-        "Kodok Acumalaka",
-        "Supra Icikiwir",
-        "Player BlueArchive",
-        "Penyu Madura",
-        "Hiu Sunda",
-        "Musang Papua",
-        "Kukang Jawa",
-        "Kelelawar Manado",
-        "Piranha Betawi",
-        "Vario Pala Geter",
-        "Kuda-Kuda PSHT",
-        "Sosok Hitam Legam",
-        "Kucing Onde Mande"
+        "KUCING ISRIWIL",
+        "KODOK ACUMALAKA",
+        "SUPRA ICIKIWIR",
+        "PLAYER BLUEARCHIVE",
+        "PENYU MADURA",
+        "HIU SUNDA",
+        "MUSANG PAPUA",
+        "KUKANG JAWA",
+        "KELELAWAR MANADO",
+        "PIRANHA BETAWI",
+        "VARIO PALA GETER",
+        "KUDA-KUDA PSHT",
+        "SOSOK HITAM LEGAM",
+        "KUCING ONDE MANDE",
+        "TITIT NAGA"
     ];
 
     return khodams[index];
@@ -36,7 +40,7 @@ function cariKhodam(nama) {
 
 document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    
+
     let name = document.getElementById('nameInput').value.trim();
     if (name === '') {
         const modal = document.getElementById('nameModal');
@@ -49,6 +53,19 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     document.getElementById('loadingSpinner').style.display = 'block';
     document.getElementById('searchForm').style.display = 'none';
     document.getElementById('backButton').style.display = 'none';
+
+    let loadingBar = document.getElementById('loadingBar');
+    loadingBar.style.width = '0%';
+
+    let progress = 0;
+    let interval = setInterval(function() {
+        if (progress < 100) {
+            progress += 2; // Adjust this value for smoother progress
+            loadingBar.style.width = `${progress}%`;
+        } else {
+            clearInterval(interval);
+        }
+    }, 100); // Adjust this value to match the total time of 5000ms
 
     setTimeout(function() {
         let result = cariKhodam(name);
